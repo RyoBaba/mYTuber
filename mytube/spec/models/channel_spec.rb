@@ -7,23 +7,24 @@ describe Channel do
   describe "hello method" do
     before do
       channel = Channel.new
-      channel.name = "ヒカル"
-      channel.c_id = "ABC"
+      channel.name = "Someone"
+      channel.c_id = "ChannelId"
       channel.save
-      @channel = Channel.where("name = ?", "ヒカル").first
+      @channel = Channel.where("name = ?", "Someone").first
     end
 
-    context "normal case." do
+    context "youtube resource rules" do
       
-      it "not null" do
-        @channel.hello.should_not be_nil
+      it "resource type string" do
+        Channel.resource_type.should == 'channels'
       end
 
-      it "name値の比較" do
-        result_val = @channel.hello
-        result_val.should == "ヒカルでござる"
-        result_val.should.eql "ヒカルでござる"
-      end
+      ## youtube api test
+      
+      # it "api call" do
+      #   @channel.import_channel_info.should == 'foobar'
+      # end
+
     end
   end
 

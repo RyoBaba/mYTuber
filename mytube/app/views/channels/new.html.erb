@@ -1,0 +1,9 @@
+<h1>チャンネル情報を登録</h1>
+
+<%= form_for @channel do |f| %>
+  <%= f.label :name %>：<%= f.text_field :name %><br>
+  <%= f.label :c_id %>:
+  <%= f.text_field :c_id %>
+
+  <%= f.submit %>
+<% end %>
