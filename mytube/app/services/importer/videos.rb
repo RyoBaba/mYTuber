@@ -9,14 +9,14 @@ module Importer
     def self.recursive_import(channel)
       channel_updated = false
       option = {
-        :c_id => channel.c_id,
+        :youtube_channel_id => channel.youtube_channel_id,
       }
       option[:published_after] = to_date_for_api(channel.last_imported_at) unless channel.last_imported_at.nil?
       iteration(option).times do
         get(option)["items"].each do |v|
           Video.create({
-            :channel_id => channel.c_id,
-            :video_id => v["id"]["videoId"],
+            :channel_id => channel.id,
+            :youtube_video_id => v["id"]["videoId"],
             :title => v["snippet"]["title"],
             :thumb_url => v["snippet"]["thumbnails"]["default"]["url"],
             :published_at => v["snippet"]["publishedAt"],
@@ -44,7 +44,8 @@ module Importer
         :part => "id",
         :filter => filter
       })
-      return res["items"].empty? ? 0 : ( res["pageInfo"]["totalResults"].to_i / res["pageInfo"]["resultsPerPage"].to_i ).ceil
+      return res["items"].empty? || res["pageInfo"]["resultsPerPage"].to_f.zero? ? 0 : ( res["pageInfo"]["totalResults"].to_f / res["pageInfo"]["resultsPerPage"].to_f ).ceil
+
     end
 
     def self.get( option )
@@ -64,7 +65,7 @@ module Importer
     def self.build_filter option
       filter = {
         :order => "date",
-        :channelId => option[:c_id],
+        :channelId => option[:youtube_channel_id],
         :maxResults => 50,
         :type => "video",
       }
