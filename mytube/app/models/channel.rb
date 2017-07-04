@@ -1,4 +1,5 @@
 class Channel < BaseYoutubeResource
+  has_many :user_channels
   def import_channel_info
     @data = ExternalApi::YoutubeData.new.import( Channel.resource_type, { 
       :part => "id,snippet,brandingSettings,contentDetails,invideoPromotion,statistics,topicDetails",
