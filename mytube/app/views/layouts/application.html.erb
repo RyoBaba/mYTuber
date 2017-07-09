@@ -18,12 +18,11 @@
   <p class="alert alert-danger"><%= alert %></p>
 <% end %>
 
-<div class="ui grid">
-  <%= render :partial => 'shared/header_menu' %>
-  <%= render :partial => 'shared/left_menu' %>
-  <div class="thirteen wide column">
-    <%= yield %>
-  </div>
+<%= render :partial => 'shared/header' %>
+<%= render :partial => 'shared/menu' %>
+<div class="ui text container">
+ <%= yield %>
 </div>
+
 </body>
 </html>

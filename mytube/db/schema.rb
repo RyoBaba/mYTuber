@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170702053907) do
+ActiveRecord::Schema.define(version: 20170703135454) do
 
   create_table "channels", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
-    t.string   "c_id"
-    t.date     "last_imported_at"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.string   "youtube_channel_id"
+    t.datetime "last_imported_at"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
 
   create_table "user_channels", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20170702053907) do
     t.integer  "channel_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_user_channels_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -46,12 +47,13 @@ ActiveRecord::Schema.define(version: 20170702053907) do
 
   create_table "videos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "channel_id"
-    t.string   "video_id"
+    t.string   "youtube_video_id"
     t.string   "title"
     t.string   "thumb_url"
     t.datetime "published_at"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["channel_id"], name: "index_videos_on_channel_id", using: :btree
   end
 
 end

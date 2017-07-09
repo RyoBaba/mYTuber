@@ -23,19 +23,17 @@ class UserChannelsController < ApplicationController
   def create
     
     # チャンネルマスタに未登録なら登録しておく
-    @channel = Channel.where(:youtube_channel_id => params[:youtube_channel_id])
+    @channel = Channel.where(:youtube_channel_id => params[:youtube_channel_id]).first
     unless @channel.present?
       @channel = Channel.create({
         :name               => params[:name],
         :youtube_channel_id => params[:youtube_channel_id]
       })
     end
-
-    binding.pry
-    @user_channel = UserChannel.create({
+    @user_channel = UserChannel.create!({
+      :user_id    => current_user.id,
       :channel_id => @channel.id
     })
-
   end
 
   ## READ
