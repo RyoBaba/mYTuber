@@ -11,18 +11,21 @@
 </head>
 
 <body>
-<% if notice %>
-  <p class="alert alert-success"><%= notice %></p>
-<% end %>
-<% if alert %>
-  <p class="alert alert-danger"><%= alert %></p>
-<% end %>
+<div class="container">
+  <%= render :partial => 'shared/header' %>
 
-<%= render :partial => 'shared/header' %>
-<%= render :partial => 'shared/menu' %>
-<div class="ui text container">
- <%= yield %>
+  <%= render :partial => 'shared/sidebar' %>
+
+  <div class="article">
+    <% if notice %>
+      <p class="alert alert-success"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p class="alert alert-danger"><%= alert %></p>
+    <% end %>
+
+   <%= yield %>
+  </div>
 </div>
-
 </body>
 </html>

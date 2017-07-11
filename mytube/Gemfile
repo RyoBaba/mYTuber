@@ -74,5 +74,6 @@ gem 'dotenv-rails'
 
 gem 'typhoeus'
 
-# CSS framework
-gem 'semantic-ui-sass', git: 'https://github.com/doabit/semantic-ui-sass.git'
+gem 'bootstrap-sass'
+
+
