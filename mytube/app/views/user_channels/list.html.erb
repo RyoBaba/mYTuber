@@ -1,9 +1,29 @@
-<h1>UserChannel#list</h1>
-<p>Find me in app/views/user_channel/list.html.erb</p>
+<div class="row">
+  <div class="col-md-9">
+    <h2>あなたの登録チャンネル</h2>
+    <table class="table channels">
+      <tr>
+        <th>#</th>
+        <th>チャンネル名</th>
+        <th>YouTube URL</th>
+      </tr>
+      <% @user_channels.each do |user_channel| %>
+        <tr>
+          <td><%= user_channel.channel.id %></td>
+          <td><%= user_channel.channel.name %></td>
+          <td>
+            <%= link_to user_channel.channel.url do  %>
+              <button type="button" class="btn btn-secondary">
+              YouTube
+              </button>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
 
-<h2>あなたの登録チャンネル</h2>
-<% @channels.each do |channel| %>
-<%= debug channel %>
-<% end %>
-
-<%= debug @videos %>
+  <div class="col-md-3">
+    <% render partial: 'sidebar' %>
+  </div>
+</div>

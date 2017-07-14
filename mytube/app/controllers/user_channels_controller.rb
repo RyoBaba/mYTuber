@@ -1,16 +1,19 @@
 class UserChannelsController < ApplicationController
 
-  before_action :set_user_channel, only: %w(index list)
+  before_action :set_user_channels, only: %w(list)
+  before_action :set_user_channel, only: %w(show refresh edit)
 
+  # redirect to login user's channel
   def index
+    redirect_to action: "list", user_id: current_user.id 
   end
 
   def list
-    @channels = []
-    @user_channels.each do |uc| 
-      @channels.push Channel.find(uc.channel_id)
-    end
-    @videos = Importer::Videos.import @channels
+    # @channels = []
+    # @user_channels.each do |uc| 
+    #   @channels.push Channel.find(uc.channel_id)
+    # end
+    # @videos = Importer::Videos.import @channels
   end
 
   #### RESTful (resources) ####
@@ -38,10 +41,12 @@ class UserChannelsController < ApplicationController
 
   ## READ
   def show
+
   end
 
   ## UPDATE
   def edit
+
   end
 
   def update
@@ -53,8 +58,14 @@ class UserChannelsController < ApplicationController
 
   private 
 
+  # get all user_channel's data
+  # @param :user_id
+  def set_user_channels
+    @user_channels = UserChannel.where(user_id: params[:user_id]).order(:id)
+  end
+
   def set_user_channel
-    @user_channels = current_user.user_channels
+    @user_channel = UserChannel.find(params[:id])
   end
 
 end

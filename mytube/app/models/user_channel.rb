@@ -1,4 +1,4 @@
 class UserChannel < ApplicationRecord
-  belongs_to :user, :dependent => :destroy
-  belongs_to :channels, :dependent => :destroy, required: false
+  belongs_to :user
+  belongs_to :channel
 end

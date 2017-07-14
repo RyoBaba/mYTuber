@@ -12,7 +12,8 @@ Rails.application.routes.draw do
   resources :channels
   resources :user_channels do
     collection do
-      get 'list/:id', to: "user_channels#list"
+      get 'list/:user_id', to: "user_channels#list"
+      get 'refresh/:id', to: "user_channels#refresh"
     end
   end
 
