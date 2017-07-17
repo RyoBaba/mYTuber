@@ -6,6 +6,7 @@
         <th>#</th>
         <th>チャンネル名</th>
         <th>YouTube URL</th>
+        <th>更新</th>
       </tr>
       <% @user_channels.each do |user_channel| %>
         <tr>
@@ -14,6 +15,9 @@
             <%= link_to user_channel.channel.name, {action: :show, id: user_channel.channel.id} %></td>
           <td>
             <%= link_to "YouTube", user_channel.channel.url, class: 'btn btn-sm btn-default' %>
+          </td>
+          <td>
+            <%= button_tag "更新", class: "refresh", data: {channel_id: user_channel.id} %>
           </td>
         </tr>
       <% end %>

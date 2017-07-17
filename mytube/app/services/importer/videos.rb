@@ -14,14 +14,13 @@ module Importer
       option[:published_after] = to_date_for_api(channel.last_imported_at) unless channel.last_imported_at.nil?
       iteration(option).times do
         get(option)["items"].each do |v|
-          Video.create({
+          Video.create!({
             :channel_id => channel.id,
             :youtube_video_id => v["id"]["videoId"],
             :title => v["snippet"]["title"],
-            :thumb_url => v["snippet"]["thumbnails"]["default"]["url"],
+            :thumb_url => v["snippet"]["thumbnails"]["medium"]["url"],
             :published_at => v["snippet"]["publishedAt"],
           })
-          
           # 最初に取得したレコード（最新のビデオ）の公開日時をChannelにキャッシュ
           unless channel_updated
             channel.last_imported_at = v["snippet"]["publishedAt"]
@@ -34,6 +33,7 @@ module Importer
           option[:published_before] = to_date_for_api(v["snippet"]["publishedAt"])
         end
       end
+
     end
 
     def self.iteration (option)

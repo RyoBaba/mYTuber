@@ -263,7 +263,6 @@ DEPENDENCIES
   bcrypt
   bootstrap-sass
   byebug
-  coffee-rails (~> 4.2)
   devise
   dotenv-rails
   jbuilder (~> 2.5)
