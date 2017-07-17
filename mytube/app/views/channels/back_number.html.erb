@@ -1,0 +1,9 @@
+<%= render partial: "subtitle", params: params %>
+
+<div class="row">
+  <% @videos.each do |video| %>
+    <div class="col-xs-6 col-lg-4">
+      <%= image_tag video.thumb_url %>
+    </div>
+  <% end %>
+</div>

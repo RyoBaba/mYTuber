@@ -76,4 +76,4 @@ gem 'typhoeus'
 
 gem 'bootstrap-sass'
 
-
+gem 'kaminari'

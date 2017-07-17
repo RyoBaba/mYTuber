@@ -41,7 +41,6 @@ class UserChannelsController < ApplicationController
 
   ## READ
   def show
-
   end
 
   ## UPDATE

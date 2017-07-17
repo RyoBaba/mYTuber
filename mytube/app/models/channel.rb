@@ -1,5 +1,6 @@
 class Channel < BaseYoutubeResource
   has_many :user_channels
+  has_many :videos
   
   # youTube channel url
   def url

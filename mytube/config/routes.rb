@@ -9,11 +9,16 @@ Rails.application.routes.draw do
   get 'home/index'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :channels
-  resources :user_channels do
+  resources :channels, only: %w(show new create) do
     collection do
-      get 'list/:user_id', to: "user_channels#list"
-      get 'refresh/:id', to: "user_channels#refresh"
+      get ':id/:year/',       to: "channels#back_number"
+      get ':id/:year/:month', to: "channels#back_number"
+    end
+  end
+  resources :user_channels, except: %w(destroy) do
+    collection do
+      get 'list/:user_id',  to: "user_channels#list"
+      get 'refresh/:id',    to: "user_channels#refresh"
     end
   end
 

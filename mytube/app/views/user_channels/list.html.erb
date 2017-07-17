@@ -10,13 +10,10 @@
       <% @user_channels.each do |user_channel| %>
         <tr>
           <td><%= user_channel.channel.id %></td>
-          <td><%= user_channel.channel.name %></td>
           <td>
-            <%= link_to user_channel.channel.url do  %>
-              <button type="button" class="btn btn-secondary">
-              YouTube
-              </button>
-            <% end %>
+            <%= link_to user_channel.channel.name, {action: :show, id: user_channel.channel.id} %></td>
+          <td>
+            <%= link_to "YouTube", user_channel.channel.url, class: 'btn btn-sm btn-default' %>
           </td>
         </tr>
       <% end %>
