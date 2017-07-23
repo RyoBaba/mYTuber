@@ -1,5 +1,6 @@
 class ChannelsController < ApplicationController
   include External::YouTube
+  include ChannelInfo
   before_action :set_channel_data, only: %w(show back_number)
 
   # 指定されたチャンネルで公開されているビデオの一覧を時系列で表示
@@ -11,13 +12,13 @@ class ChannelsController < ApplicationController
     # year,monthは任意
     conditions = ["year(published_at)='#{params[:year]}'"]
     conditions.push("month(published_at)='#{params[:month]}'") if params[:month].present?
-    @videos = @channel.videos.where(conditions)
+    @videos = @channel.videos.where(conditions.join(' AND '))
       .order(:published_at)
       .page(params[:page])
   end
 
   def show
-    @videos = @channel.page(params[:page])
+    @videos = @channel.videos.page(params[:page]).per(1)
   end
 
   def new
@@ -35,5 +36,6 @@ class ChannelsController < ApplicationController
 
   def set_channel_data
     @channel = Channel.find(params[:id])
+    @yyyymm = published_ym
   end
 end

@@ -1,0 +1,9 @@
+<% if yyyymm.present? %>
+  <h3>月別検索</h3>
+  <div class="list-group">
+    <% yyyymm.each do |bn| %>
+      <% _active = "active" if params[:year].present? && params[:month].present? && params[:year].to_i === bn[0].to_i && params[:month].to_i === bn[1].to_i %>
+      <%= link_to bn[0].to_s + "年" + format("%02d", bn[1]) + "月", "/channels/#{channel.id}/#{bn[0]}/#{bn[1]}", {class: "list-group-item #{_active}"} %>
+    <% end %>
+  </div>
+<% end %>
