@@ -18,7 +18,8 @@ class ChannelsController < ApplicationController
   end
 
   def show
-    @videos = @channel.videos.page(params[:page]).per(1)
+    @videos = @channel.videos.where(channel_id: @channel.id)
+      .order(published_at: :desc).page(params[:page]).per(10)
   end
 
   def new
