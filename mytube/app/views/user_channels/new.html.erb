@@ -1,15 +1,14 @@
 <h1>お気に入りチャンネルを登録する</h1>
 
-<h2>YoutubeのチャンネルIDを登録してください</h2>
+<p>YoutubeのチャンネルIDを登録してください</p>
 
 <%= form_tag("/user_channels", method: "post") do %>
   <%= label_tag :youtube_channel_id, "YouTube チャンネルID" %>:
-  <%= text_field_tag :youtube_channel_id %>
-  <br>
+  <%= text_field_tag :youtube_channel_id, "", class:"form-control" %>
   <%= label_tag :name, "チャンネル名" %>:
-  <%= text_field_tag :name %>
+  <%= text_field_tag :name, "", class: "form-control" %>
   <br>
 
-  <%= submit_tag("チャンネル登録する") %>
+  <%= submit_tag "チャンネル登録する", class:"btn btn-primary" %>
 
 <% end %>

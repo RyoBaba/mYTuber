@@ -1,30 +1,22 @@
-<div class="row">
-  <div class="col-md-9">
-    <h2>あなたの登録チャンネル</h2>
-    <table class="table channels">
-      <tr>
-        <th>#</th>
-        <th>チャンネル名</th>
-        <th>YouTube URL</th>
-        <th>更新</th>
-      </tr>
-      <% @user_channels.each do |user_channel| %>
-        <tr>
-          <td><%= user_channel.channel.id %></td>
-          <td>
-            <%= link_to user_channel.channel.name, channel_path(user_channel.channel.id) %></td>
-          <td>
-            <%= link_to "YouTube", user_channel.channel.url, class: 'btn btn-sm btn-default' %>
-          </td>
-          <td>
-            <%= button_tag "更新", class: "refresh", data: {channel_id: user_channel.id} %>
-          </td>
-        </tr>
-      <% end %>
-    </table>
-  </div>
-
-  <div class="col-md-3">
-    <% render partial: 'sidebar' %>
-  </div>
-</div>
+<h2>あなたの登録チャンネル</h2>
+<table class="table channels">
+  <tr>
+    <th>#</th>
+    <th>チャンネル名</th>
+    <th>YouTube URL</th>
+    <th>更新</th>
+  </tr>
+  <% @user_channels.each do |user_channel| %>
+    <tr>
+      <td><%= user_channel.channel.id %></td>
+      <td>
+        <%= link_to user_channel.channel.name, channel_path(user_channel.channel.id) %></td>
+      <td>
+        <%= link_to "YouTube", user_channel.channel.url, class: 'btn btn-sm btn-default' %>
+      </td>
+      <td>
+        <%= button_tag "更新", class: "refresh", data: {channel_id: user_channel.id} %>
+      </td>
+    </tr>
+  <% end %>
+</table>

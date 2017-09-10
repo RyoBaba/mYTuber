@@ -1,0 +1,28 @@
+<% if yyyymm.present? %>
+  <h3>月別検索</h3>
+  <div class="list-group">
+    <% yyyymm.each do |bn| %>
+      <% _active = "active" if params[:year].present? && params[:month].present? && params[:year].to_i === bn[0].to_i && params[:month].to_i === bn[1].to_i %>
+      <%= link_to bn[0].to_s + "年" + format("%02d", bn[1]) + "月", "/channels/#{channel.id}/#{bn[0]}/#{bn[1]}", {class: "list-group-item #{_active}"} %>
+    <% end %>
+  </div>
+<% end %>
+
+
+<% if user_signed_in? %>
+
+  <h3>メニュー</h3>
+  <div class="list-group">
+    <%= link_to "登録チャンネル一覧", user_channels_path, {class: "list-group-item"} %>
+    <%= link_to "新しいチャンネルを登録する", new_user_channel_path, {class: "list-group-item"} %>
+  </div>
+
+
+
+  Logged in as <strong><%= current_user.email %></strong>.
+  <%= link_to "Settings", edit_user_registration_path, :class => "navbar-link" %> |
+  <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => "navbar-link" %>
+<% else %>
+  <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link' %> |
+  <%= link_to "Login", new_user_session_path, :class => 'navbar-link' %>
+<% end %>
