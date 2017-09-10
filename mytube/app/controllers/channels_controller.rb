@@ -28,7 +28,7 @@ class ChannelsController < ApplicationController
 
   def create
     channel = params[:channel]
-    Channel.create(:name => channel[:name], :c_id => channel[:c_id])
+    Channel.create(:name => channel[:name], :youtube_channel_id => channel[:youtube_channel_id])
 
     redirect_to '/'
   end

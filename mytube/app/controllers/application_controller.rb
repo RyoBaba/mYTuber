@@ -7,6 +7,6 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    user_url
+    user_channels_url
   end
 end

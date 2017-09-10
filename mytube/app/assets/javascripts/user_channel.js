@@ -3,7 +3,7 @@ $(function(){
     $.ajax({
       method: "GET",
       url: "/user_channels/refresh/" + $(this).data('channel-id'),
-      async: false,
+      async: true,
       done: function(res){
         console.log(res.message);
       },
