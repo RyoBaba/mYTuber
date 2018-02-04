@@ -6,6 +6,7 @@ $(function(){
       async: true,
       done: function(res){
         console.log(res.message);
+        $("videoCnt"+res.user_channel_id).empty().text(res.count);
       },
       fail: function(xhr, res){
         console.log(res.message);

@@ -9,17 +9,13 @@ class UserChannelsController < ApplicationController
   end
 
   def list
-    # @channels = []
-    # @user_channels.each do |uc| 
-    #   @channels.push Channel.find(uc.channel_id)
-    # end
-    # @videos = Importer::Videos.import @channels
   end
 
   def refresh
     @channel = @user_channel.channel
     Importer::Videos.import [@channel]
-    render json: {message: "success"}, :status => 200
+    count = Video.where(channel_id: @channel.id).count
+    render json: {message: "success", count: count, user_channel_id: @user_channel.id }, :status => 200
   rescue => e
     render json: {message: e.message}, :status => 500
   end

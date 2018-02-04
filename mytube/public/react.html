@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf8">
+<script src="http://fb.me/react-0.13.3.js"></script>
+<script src="http://fb.me/JSXTransformer-0.13.3.js"></script>
+</head>
+<body>
+<div id="app"></div>
+<script type="text/jsx">
+var Counter = React.createClass({
+    getInitialState () {
+        return { 
+            count: 0,
+            lab: this.props.lab
+        };
+    },
+    onClick () {
+        this.setState({ count: this.state.count + 1 });
+        this.setState({ lab: this.state.lab + this.state.count});
+    },
+    render () {
+        return (
+            <div>
+                <div>count:{this.state.count}</div>
+                <div>lab:{this.state.lab}</div>
+                <button onClick={this.onClick}>click!</button>
+            </div>
+        );
+    }
+});
+cnt = React.render(<Counter lab="LAV" />, document.getElementById("app"))
+</script>
+</body>
+</html>

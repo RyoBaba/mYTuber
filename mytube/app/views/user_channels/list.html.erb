@@ -3,6 +3,7 @@
   <tr>
     <th>#</th>
     <th>チャンネル名</th>
+    <th>動画数</th>
     <th>YouTube URL</th>
     <th>更新</th>
   </tr>
@@ -10,7 +11,11 @@
     <tr>
       <td><%= user_channel.channel.id %></td>
       <td>
-        <%= link_to user_channel.channel.name, channel_path(user_channel.channel.id) %></td>
+        <span id='<%="videoCnt#{user_channel.id}"%>'><%= link_to user_channel.channel.name, channel_path(user_channel.channel.id) %></span>     
+      </td>
+      <td>
+        <%= user_channel.channel.videos.count %>
+      </td>
       <td>
         <%= link_to "YouTube", user_channel.channel.url, class: 'btn btn-sm btn-default' %>
       </td>
