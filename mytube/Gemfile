@@ -77,3 +77,11 @@ gem 'typhoeus'
 gem 'bootstrap-sass'
 
 gem 'kaminari'
+
+gem 'foreman'
+gem 'webpacker', github: 'rails/webpacker'
+
+gem 'rails-erd', group: [:development, :test]
+
+gem 'react-rails'
+
